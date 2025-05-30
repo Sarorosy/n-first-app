@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Header({hname1}) {
+function Header() {
   return (
-    <div>Welcome, {hname1}</div>
+    <header>
+      
+    </header>
   )
 }
 

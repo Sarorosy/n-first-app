@@ -1,40 +1,29 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import './App.css';
+import Header from './header';
+import Home from './Home';
+import LoginForm from './pages/LoginForm';
+import Footer from './Footer';
+import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 function App() {
-  const [users , setUsers] = useState([])
+    
 
-  const fetchusers = async() => {
-    try{
-      const response = await fetch("https://dummyjson.com/users");
-      // console.log(response)
-      const data = await response.json() 
-      console.log(data) 
-      setUsers(data.users)
-
-    }
-    catch(error){
-      console.log(error)
-    }
-  }
-
+    
   return (
-    <div>
-      <button onClick={fetchusers}>
-        fetch
-      </button>
-      {users && users.map((u)=>(
-        <div style={{display:"flex"}}>
-          <p>{u.firstName}</p>
-          <p>{u.lastName}</p>
-          <p>{u.hair.color}</p>
-          <p>{u.company.address.city}</p>
-          </div>
-        
-      ))}
-
-    </div>
-  )
+    <Router>
+      <Header />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginForm />} />
+      </Routes>
+      
+      <Footer />
+      <Toaster />
+    </Router>
+  );
 }
 
-export default App
+export default App;
